@@ -1,0 +1,27 @@
+.navbar{
+  background-image: url('./assets/images/more/15.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.footer{
+  background-image: url('./assets/images/more/13.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.addCoffeebg{
+  background-image: url('./assets/images/more/11.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.coffeeCard{
+  background-image: url('./assets/images/more/1.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
