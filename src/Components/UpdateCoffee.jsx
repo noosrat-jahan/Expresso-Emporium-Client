@@ -53,7 +53,7 @@ const UpdateCoffee = () => {
                 <p>It is a long established fact that a reader will be distraceted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here.</p>
 
                 <form onSubmit={handleUpdateCoffee}>
-                    <div className='flex items-center gap-3 '>
+                    <div className='flex flex-col lg:flex-row items-center gap-3 '>
                         <div className="form-control w-full">
                             <label className="label">
                                 <span className="label-text">Name</span>
@@ -67,7 +67,7 @@ const UpdateCoffee = () => {
                             <input type="text" name='chef' defaultValue={chef} placeholder="Enter coffee chef" className="input input-bordered" required />
                         </div>
                     </div>
-                    <div className='flex items-center gap-3'>
+                    <div className='flex flex-col lg:flex-row items-center gap-3'>
                         <div className="form-control w-full">
                             <label className="label">
                                 <span className="label-text">Supplier</span>
@@ -81,7 +81,7 @@ const UpdateCoffee = () => {
                             <input type="text" name='taste' defaultValue={taste} placeholder="Enter coffee taste" className="input input-bordered" required />
                         </div>
                     </div>
-                    <div className='flex items-center gap-3'>
+                    <div className='flex flex-col lg:flex-row items-center gap-3'>
                         <div className="form-control w-full">
                             <label className="label">
                                 <span className="label-text">Category</span>
