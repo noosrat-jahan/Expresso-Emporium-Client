@@ -3,10 +3,11 @@ import { FaFacebook } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
+import Swal from 'sweetalert2';
 
 const Signin = () => {
 
-    const { signInUser, setUsers } = useContext(AuthContext)
+    const { signInUser, setUsers, GoogleSignIn } = useContext(AuthContext)
 
     const handleSignIn = e => {
         e.preventDefault()
@@ -27,7 +28,7 @@ const Signin = () => {
                 const lastSignInTime = result?.user?.metadata?.lastSignInTime
                 const loginInfo = { email, lastSignInTime }
 
-                fetch(`http://localhost:5000/users`, {
+                fetch(`https://coffee-store-server-rho-lilac.vercel.app/users`, {
                     method: 'PATCH',
                     headers: {
                         'content-type': 'application/json'
@@ -38,6 +39,42 @@ const Signin = () => {
                     .then(data => {
                         console.log('Sign in info updated in db:', data);
                     })
+            })
+            .catch(error => {
+                console.log('Error:', error.message);
+            })
+    }
+
+    const handleGoogleSignUp = () => {
+        GoogleSignIn()
+            .then((result) => {
+                const user = result.user
+                setUsers(user)
+                console.log(user);
+
+                const email = user?.email
+                const createdAt = user?.metadata?.creationTime
+                const lastSignInTime = user?.metadata?.lastSignInTime
+                const userData = { email, createdAt, lastSignInTime }
+
+                fetch('https://coffee-store-server-rho-lilac.vercel.app/users/', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(userData)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+
+                        Swal.fire({
+                            title: "Success",
+                            text: "You successfully logged in with Google",
+                            icon: "success"
+                        });
+                    })
+
             })
             .catch(error => {
                 console.log('Error:', error.message);
@@ -80,7 +117,7 @@ const Signin = () => {
                 <div className="divider">OR</div>
 
                 <Link className='border border-[#C7C7C7] rounded-full p-3 flex items-center gap-5 mb-2 font-semibold justify-center'><span className='text-blue-700 '><FaFacebook></FaFacebook></span> Continue with Facebook</Link>
-                <Link className='border border-[#C7C7C7] rounded-full p-3 flex items-center gap-5 mb-5 font-semibold justify-center'><FcGoogle /> Continue with Google</Link>
+                <Link onClick={handleGoogleSignUp} className='border border-[#C7C7C7] rounded-full p-3 flex items-center gap-5 mb-5 font-semibold justify-center'><FcGoogle /> Continue with Google</Link>
             </div>
         </div>
 

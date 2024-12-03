@@ -21,7 +21,7 @@ const SignedUsers = () => {
             confirmButtonText: "Yes, delete it!"
           }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/users/${id}`, {
+                fetch(`https://coffee-store-server-rho-lilac.vercel.app/users/${id}`, {
                     method: 'DELETE'
                 })
                 .then(res=>res.json())
@@ -51,7 +51,7 @@ const SignedUsers = () => {
                     {/* head */}
                     <thead>
                         <tr>
-                            <th></th>
+                            <th>Serial</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Creation Date</th>
@@ -61,8 +61,8 @@ const SignedUsers = () => {
                     </thead>
                     <tbody>
                         {
-                            users.map(user => <tr key={user._id}>
-                                <th>1</th>
+                            users.map((user, index) => <tr key={user._id}>
+                                <th>{index + 1}</th>
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
                                 <td>{user.createdAt}</td>

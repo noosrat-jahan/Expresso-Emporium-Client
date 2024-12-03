@@ -4,10 +4,11 @@ import { FcGoogle } from 'react-icons/fc';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
 import { BiArrowBack } from 'react-icons/bi';
+import Swal from 'sweetalert2';
 
 const SignUp = () => {
 
-    const { createNewUser, setUsers } = useContext(AuthContext)
+    const { createNewUser, setUsers, GoogleSignIn } = useContext(AuthContext)
 
     const handleRegister = e => {
         e.preventDefault()
@@ -21,11 +22,11 @@ const SignUp = () => {
                 console.log(user);
 
                 const createdAt = user?.metadata?.creationTime
-                const userData = {email, password, createdAt}
+                const userData = { email, password, createdAt }
 
 
                 // send new user data to the database
-                fetch('http://localhost:5000/users/', {
+                fetch('https://coffee-store-server-rho-lilac.vercel.app/users/', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -34,7 +35,7 @@ const SignUp = () => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        console.log(data);                        
+                        console.log(data);
                     })
             })
             .catch(error => {
@@ -42,7 +43,42 @@ const SignUp = () => {
             })
     }
 
+    const handleGoogleSignUp = () => {
+        GoogleSignIn()
+            .then((result) => {
+                const user = result.user
+                setUsers(user)
+                console.log(user);
 
+                const email = user?.email
+                const createdAt = user?.metadata?.creationTime
+                const lastSignInTime = user?.metadata?.lastSignInTime
+                const userData = { email, createdAt, lastSignInTime }
+
+                fetch('https://coffee-store-server-rho-lilac.vercel.app/users/', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(userData)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+
+                        Swal.fire({
+                            title: "Success",
+                            text: "You successfully logged in with Google",
+                            icon: "success"
+                        });
+                    })
+
+            })
+            .catch(error => {
+                console.log('Error:', error.message);
+            })
+    }
+    
     return (
         <div>
             <Link to="/" className='flex  items-center gap-2 font-rancho text-[#374151] font-semibold text-2xl ml-24 pb-5'><BiArrowBack /> Back to home</Link>
@@ -88,7 +124,7 @@ const SignUp = () => {
                     <div className="divider">OR</div>
 
                     <Link className='border border-[#C7C7C7] rounded-full p-3 flex items-center gap-5 mb-2 font-semibold justify-center'><span className='text-blue-700 '><FaFacebook></FaFacebook></span> Continue with Facebook</Link>
-                    <Link className='border border-[#C7C7C7] rounded-full p-3 flex items-center gap-5 mb-5 font-semibold justify-center'><FcGoogle /> Continue with Google</Link>
+                    <Link onClick={handleGoogleSignUp} className='border border-[#C7C7C7] rounded-full p-3 flex items-center gap-5 mb-5 font-semibold justify-center'><FcGoogle /> Continue with Google</Link>
                 </div>
             </div>
         </div>

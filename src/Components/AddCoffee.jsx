@@ -20,7 +20,7 @@ const AddCoffee = () => {
 
 
         //send data to the server
-        fetch('http://localhost:5000/coffee', {
+        fetch('https://coffee-store-server-rho-lilac.vercel.app/coffee', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -43,7 +43,7 @@ const AddCoffee = () => {
 
     return (
         <div className='addCoffeebg py-10'>
-            <Link to="/" className='flex  items-center gap-2 font-rancho text-[#374151] font-semibold text-2xl ml-24 pb-5'><BiArrowBack /> Back to home</Link>
+            <Link to="/" className='flex w-40 items-center gap-2 font-rancho text-[#374151] font-semibold text-2xl ml-24 pb-5'><BiArrowBack /> Back to home</Link>
             <div className='bg-[#F4F3F0] w-10/12 mx-auto p-10 flex flex-col justify-center text-center'>
                 <h2 className='text-2xl font-rancho text-[#374151] font-bold'>Add New Coffee</h2>
                 <p>It is a long established fact that a reader will be distraceted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here.</p>

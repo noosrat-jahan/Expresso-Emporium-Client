@@ -21,7 +21,7 @@ const CoffeeCard = ({ coffeedata, coffees, setCoffees }) => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`http://localhost:5000/coffee/${id}`, {
+                fetch(`https://coffee-store-server-rho-lilac.vercel.app/coffee/${id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
@@ -55,7 +55,7 @@ const CoffeeCard = ({ coffeedata, coffees, setCoffees }) => {
                 <h2>Category:  {coffeedata.category} </h2>
             </div>
             <div className="join join-vertical space-y-2 ">
-                <button className="btn text-lg bg-[#D2B48C] text-white "><FiEye /></button>
+                <Link to={`viewDetails/${coffeedata._id}`} className="btn text-lg bg-[#D2B48C] text-white "><FiEye /></Link >
                 <Link to={`updatecoffee/${coffeedata._id}`}  onClick={() => {handleUpdate(coffeedata._id)}} className="btn text-lg bg-[#3C393B] text-white "><MdEdit /></Link >
                 <button onClick={() => { handleDelete(coffeedata._id) }} className="btn text-lg bg-[#EA4744] text-white "><MdDelete /></button>
             </div>
