@@ -36,6 +36,15 @@ const SignUp = () => {
                     .then(res => res.json())
                     .then(data => {
                         console.log(data);
+                        if (res.data.insertedId) {
+                            Swal.fire({
+                              position: "center",
+                              icon: "success",
+                              title: `Registarion is Successful`,
+                              showConfirmButton: false,
+                              timer: 3500
+                            });
+                          }
                     })
             })
             .catch(error => {

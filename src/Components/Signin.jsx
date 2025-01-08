@@ -1,13 +1,14 @@
 import React, { useContext } from 'react';
 import { FaFacebook } from 'react-icons/fa';
 import { FcGoogle } from 'react-icons/fc';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
 import Swal from 'sweetalert2';
 
 const Signin = () => {
 
     const { signInUser, setUsers, GoogleSignIn } = useContext(AuthContext)
+    const navigate = useNavigate()
 
     const handleSignIn = e => {
         e.preventDefault()
@@ -73,6 +74,7 @@ const Signin = () => {
                             text: "You successfully logged in with Google",
                             icon: "success"
                         });
+                        navigate('/')
                     })
 
             })

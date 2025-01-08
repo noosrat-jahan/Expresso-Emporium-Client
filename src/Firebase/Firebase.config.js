@@ -6,12 +6,12 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAfIhBGlkJaHWDxtp8R5a9fIciqjqWc0SE",
-  authDomain: "expresso-emporium-8e12e.firebaseapp.com",
-  projectId: "expresso-emporium-8e12e",
-  storageBucket: "expresso-emporium-8e12e.firebasestorage.app",
-  messagingSenderId: "763193895539",
-  appId: "1:763193895539:web:91d3329cf72a70fafc5806"
+  apiKey: import.meta.env.VITE_apiKey,
+  authDomain: import.meta.env.VITE_authDomain,
+  projectId: import.meta.env.VITE_projectId,
+  storageBucket: import.meta.env.VITE_storageBucket,
+  messagingSenderId: import.meta.env.VITE_messagingSenderId,
+  appId: import.meta.env.VITE_appId,
 };
 
 // Initialize Firebase
