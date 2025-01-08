@@ -45,13 +45,12 @@ Expresso Emporium is a small coffee store management website with interactive us
 
 # Guideline to Run Project in Local Machine:
 
-1. Installation
+## Installation
 
 Run npm install to install project dependencies.
 
-2.Environment setup
+## Environment setup
 Create a .env file and put your environment variable there. Save the following variable:
-
 VITE_apiKey
 VITE_authDomain
 VITE_projectId
@@ -59,10 +58,10 @@ VITE_storageBucket
 VITE_messagingSenderId
 VITE_appId
 
-3. Usage
+## Usage
 Run npm run dev to run the project locally.
 
 # Links: 
 
-Api Link : [https://coffee-store-server-rho-lilac.vercel.app/]
-Live Link: [https://expresso-emporium-8e12e.web.app/]
+* Api Link : https://coffee-store-server-rho-lilac.vercel.app/
+* Live Link: https://expresso-emporium-8e12e.web.app/
