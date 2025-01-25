@@ -17,6 +17,16 @@ import AuthProvider from './Provider/AuthProvider.jsx';
 import SignedUsers from './Components/SignedUsers.jsx';
 import ViewDetails from './Components/ViewDetails.jsx';
 
+
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+
+const queryClient = new QueryClient()
 const router = createBrowserRouter([
   {
     path: "/",
@@ -34,7 +44,7 @@ const router = createBrowserRouter([
       {
         path: "viewDetails/:id",
         element: <ViewDetails></ViewDetails>,
-        loader: ({params}) => fetch(`https://coffee-store-server-rho-lilac.vercel.app/coffee/${params.id}`)
+        loader: ({ params }) => fetch(`https://coffee-store-server-rho-lilac.vercel.app/coffee/${params.id}`)
       },
       {
         path: "updatecoffee/:id",
@@ -56,7 +66,7 @@ const router = createBrowserRouter([
       {
         path: "users",
         element: <SignedUsers></SignedUsers>,
-        loader: ()=>fetch('https://coffee-store-server-rho-lilac.vercel.app/users/')
+        loader: () => fetch('https://coffee-store-server-rho-lilac.vercel.app/users/')
       }
     ]
   },
@@ -67,7 +77,9 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuthProvider>
-      <RouterProvider router={router} />
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
     </AuthProvider>
   </StrictMode>,
 )
