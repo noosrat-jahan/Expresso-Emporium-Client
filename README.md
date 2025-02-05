@@ -1,3 +1,7 @@
+# Expresso Emporium
+
+![Alt text](src/assets/images/projectdemo.png)
+
 # Project Overview 
 Expresso Emporium is a small coffee store management website with interactive user interface built by ReactJs.
 
@@ -59,7 +63,7 @@ VITE_messagingSenderId
 VITE_appId
 
 ## Usage
-Run npm run dev to run the project locally.
+Run `npm run dev` to run the project locally.
 
 # Links: 
 
